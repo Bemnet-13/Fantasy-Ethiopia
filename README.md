@@ -4,4 +4,4 @@ An API that can be used to place orders to local restaurants ("Mother betoch") i
 ## Group members
 1. Abdulmejd Kelil---UGR/3326/14
 2. Bemnet Aschalew---UGR/2248/14
-3. Sofoniyas Tizazu---UFR/0492/14
+3. Sofonyas Tizazu---UFR/0492/14
