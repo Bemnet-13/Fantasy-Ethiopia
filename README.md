@@ -1,5 +1,5 @@
 # Fantasy Ethiopia
-Fntasy Ethiopia allows participants to build and manage their own virtual football teams.
+Fantasy Ethiopia allows participants to build and manage their own virtual football teams.
 
 ## Description
 A user selects a set of players to form a team of 11 players. Each players statistics (such as game score) is updated by the administrator. The team score will be cumulative contribution of each players respectibe score in a gameweek.
