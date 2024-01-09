@@ -1,8 +1,8 @@
-# አስተናጋጅ -order-placer-system
-An API that can be used to place orders to local restaurants ("Mother betoch") in the vicinity of 5 Kilo.
+# Fantasy Ethiopia
+Fntasy Ethiopia allows participants to build and manage their own virtual football teams.
 
 ## Description
-"Astenagaj" order placer system is a web API that is envisaged for providing ease of ordering foods from local restaurants in the vicinity of 5kIlo ("Mother betoch"). A customer can order items from a menu, can update and deletes an order. A waiter/restaurant-admin can make an order available for a customer to order. Yet this web API has no transaction involvement between a user and restaurant.
+A user selects a set of players to form a team of 11 players. Each players statistics (such as game score) is updated by the administrator. The team score will be cumulative contribution of each players respectibe score in a gameweek.
 
 ## Group members
 1. Abdulmejd Kelil---UGR/3326/14
