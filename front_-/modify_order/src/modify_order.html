@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="output.css" />
+    <title>Order</title>
+  </head>
+  <body class="bg-gray-100 m-8">
+    <nav class="sp-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img
+            src="img/አስተናጋጅ-logos_black.png"
+            alt="Logo"
+            class="h-9 w-9 mr-2"
+          />
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="text-black hover:text-blue-300">Home</a>
+          <a href="#" class="text-black hover:text-blue-300">Menu</a>
+          <a href="#" class="text-black hover:text-blue-300">My Order</a>
+        </div>
+
+        <!-- Mobile Menu Button (hidden on larger screens) -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-black">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container border-blue-300 border-4 p-4">
+        <!-- Orders -->
+        <div class="border-4 flex justify-between mt-4">
+            <p>Food Name</p>
+            <div class="pricedelete flex">
+                <p class="price m-1">90.00</p>
+                <button type="submit" class="delete w-6 bg-red-700 hover:bg-red-800 active:bg-red-600">X</button>
+            </div>
+        </div>
+        <div class="border-4 flex justify-between mt-4">
+            <p>Dinch</p>
+            <div class="pricedelete flex">
+                <p class="price m-1">90.00</p>
+                <button type="submit" class="delete w-6 bg-red-700 hover:bg-red-800 active:bg-red-600">X</button>
+            </div>
+        </div>
+    </div>
+    <div class="finale flex justify-between">
+        <buttin type="submit" class="add bg-blue-400 hover:bg-blue-700 active:bg-blue-950 p-4 m-4 rounded-md">add meal</buttin>
+        <p class="mt-8 ">Total Price: 90.00</p>
+    </div>
+    </body>
+</html>
