@@ -1,0 +1,18 @@
+
+
+users Collection:
+
+- username: string (required)
+- password: string (required)
+- admin: boolean (default: false)
+- weeklyscore: int
+- totalscore: int
+
+players Collection:
+- players_id: int
+- name: string (required)
+- weeklyscore: int
+- totalscore: int
+
+
+
