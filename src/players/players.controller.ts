@@ -49,7 +49,7 @@ async getTeam(@Req() request: Request): Promise<Player[]> {
   let teams = [];
   const user = await this.authService.findById(userId);
   const playersId = user.team.split("/").reverse().filter(Boolean);
-  console.log(playersId);
+  // console.log(playersId);
   playersId.pop();
   const playerPromises = playersId.map(playerId => this.playerService.findById(playerId));
 
@@ -63,7 +63,7 @@ async getTeam(@Req() request: Request): Promise<Player[]> {
       uPplayer: CreatePlayerDto,
       @Req() req,
     ): Promise<Player> {
-      console.log(CreatePlayerDto);
+      // console.log(CreatePlayerDto);
       const player = uPplayer as unknown as  Player;
           return this.playerService.create(player);
     }
