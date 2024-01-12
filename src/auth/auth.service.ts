@@ -89,24 +89,8 @@ export class AuthService {
       return null;
     }
   }
-  async findAll(query: ExpressQuery): Promise<User[]> {
-    const resPerPage = 2;
-    const currentPage = Number(query.page) || 1;
-    const skip = resPerPage * (currentPage - 1);
-
-    const keyword = query.keyword
-      ? {
-          name: {
-            $regex: query.keyword,
-            $options: 'i',
-          },
-        }
-      : {};
-
-    const users = await this.userModel
-      .find({ ...keyword })
-      .limit(resPerPage)
-      .skip(skip);
+  async findAll(): Promise<User[]> {
+    const users = await this.userModel.find();
     return users;
   }
 }

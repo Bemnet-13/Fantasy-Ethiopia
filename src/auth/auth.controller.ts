@@ -30,8 +30,8 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
   @Get()
-    async getAllPlayers(@Query() query: ExpressQuery): Promise<User[]> {
-      return this.authService.findAll(query);
+    async getAllPlayers(): Promise<User[]> {
+      return this.authService.findAll();
     }
 
   @Put(":id")
