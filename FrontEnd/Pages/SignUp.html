@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script defer src="../js/signup.js"></script>
+</head>
+
+<body class="font-Poppins">
+    <div class="flex flex-col items-center md:flex-row">
+        <header class="flex justify-center md:justify-start">
+            <img src="../Fantasy Ethiopia-logos/Fantasy Ethiopia-logos_black.png" alt="_logo" class="w-2/5">
+        </header>
+        <main>
+            <h2 class="text-xl md:text-2xl font-semibold mb-2 mt-8">Sign Up with new credentials</h2>
+            <form class="flex flex-col gap-y-1 items-center">
+                <div class="self-center md:self-start mb-4">
+                    <p class="font-bold">Sign up as:</p>
+                    <input type="radio" id="admin" name="role" value="Host/Admin">
+                    <label for="Host/Admin">Host/Admin</label><br>
+                    <input type="radio" id="user" name="role" value="Player/User">
+                    <label for="Player/User">Player/User</label><br>
+                </div>
+
+
+                <input type="text" id="name" name="firstName" placeholder="First Name"
+                    class="bg-zinc-200 rounded h-8 md:self-start"><br>
+                <input type="text" id="email" name="phoneno" placeholder="Email"
+                    class="bg-zinc-200 rounded h-8 md:self-start"><br>
+                <input type="password" id="password" name="password" placeholder=" Password"
+                    class="bg-zinc-200 rounded h-8 md:self-start"><br>
+                <hr>
+                <input type="button" id="signup" value="Sign Up"
+                    class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10">
+                <br>
+            </form>
+        </main>
+    </div>
+    <footer class="text-center mt-8">
+
+        <p><span>&copy;</span>Fantasy-Ethiopia,
+            <time datetime="2024-1-12">January, 2024</time>
+        </p>
+    </footer>
+</body>
+</body>
+
+</html>

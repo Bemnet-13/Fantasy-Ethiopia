@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Board</title>
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              Poppins: ["Poppins", "sans- serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-Poppins">
+    <header class="flex flex-row flex-wrap justify-between">
+      <img
+        src="../Fantasy Ethiopia-logos/Fantasy Ethiopia-logos_black.png"
+        alt="_logo"
+        class="w-1/5"
+      />
+      <nav class="m-4">
+        <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
+          <li><a href="Home.html">Home</a></li>
+          <li
+            ><a
+              href="MyTeam.html"
+              aria-current="page"
+              class="underline decoration-solid decoration-2 underline-offset-2"
+              >My Team</a
+            ></li
+          >
+          <li><a href="About-User.html">About </a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="text-center">
+      <section class="flex flex-col gap-y-2">
+        <h2 class="text-2xl font-semibold">Add players</h2>
+        <p>Add players for the user to create a team.</p>
+        <a
+          href=""
+          class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3"
+        >
+          <button>Add Players</button></a
+        >
+      </section>
+
+      <section class="flex flex-col gap-y-2 mt-8">
+        <h2 class="text-2xl font-semibold">Update players</h2>
+        <p>Update players statistics and gamescore for each gameweek.</p>
+        <a
+          href=""
+          class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3"
+        >
+          <button>Update Players</button></a
+        >
+      </section>
+    </main>
+    <footer class="text-center mt-20">
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-1-12">January, 2024</time>
+      </p>
+    </footer>
+  </body>
+</html>
