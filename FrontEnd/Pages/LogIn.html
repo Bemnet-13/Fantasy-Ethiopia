@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="../js/login.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Log In</title>
-  <link rel="stylesheet" href="./css/output.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet" />
-  <script defer src="../js/login.js"></script>
-</head>
+  <body class="font-Poppins">
+    <div
+      class="flex flex-col items-center justify-center md:flex-row justify-center"
+    >
+      <header class="flex justify-center md:justify-start">
+        <img
+          src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png"
+          alt="_logo"
+          class="w-1/5"
+        />
+      </header>
+      <main>
+        <h2 class="text-xl md:text-2xl font-semibold mb-2 mt-8"
+          >Log In with your previous credentials</h2
+        >
+        <form class="flex flex-col gap-y-1 items-center">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            class="bg-zinc-200 rounded h-8 md:self-start"
+          /><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder=" Password"
+            class="bg-zinc-200 rounded h-8 md:self-start"
+          /><br />
+          <hr />
+          <input
+            id="login"
+            type="button"
+            value="Log In"
+            class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10"
+          />
+          <br />
+        </form>
+        <section class="text-center md:text-start">
+          <div class="font-bold md:ml-16">OR</div>
+          <a href="" class="font-semibold">Sign Up with new credentials</a>
+        </section>
+      </main>
+    </div>
+    <footer class="text-center mt-8">
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-1-12">January, 2024</time>
+      </p>
+    </footer>
+    <script>
+      const loginButton = document.getElementById("login");
+      const inputEmail = document.getElementById("email");
+      const inputPassword = document.getElementById("password");
 
-<body class="font-Poppins">
-  <div class="flex flex-col items-center justify-center md:flex-row justify-center">
-    <header class="flex justify-center md:justify-start">
-      <img src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png" alt="_logo" class="w-1/5">
+      async function loginUser(email, password) {
+        const loginEndpoint = "http://localhost:3000/auth/login";
 
-<<<<<<< HEAD
-    </header>
-    <main>
-      <h2 class="text-xl md:text-2xl font-semibold mb-2 mt-8">Log In with your previous credentials</h2>
-      <form class="flex flex-col gap-y-1 items-center">
-        <input type="text" id="email" name="email" placeholder="Email"
-          class="bg-zinc-200 rounded h-8 md:self-start" /><br />
-        <input type="password" id="password" name="password" placeholder=" Password"
-          class="bg-zinc-200 rounded h-8 md:self-start" /><br />
-        <hr />
-        <input id="login" type="button" value="Log In"
-          class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10" />
-        <br />
-      </form>
-      <section class="text-center md:text-start">
-        <div class="font-bold md:ml-16">OR</div>
-        <a href="" class="font-semibold">Sign Up with new credentials</a>
-      </section>
-    </main>
-  </div>
-  <footer class="text-center mt-8">
-    <p><span>&copy;</span>Fantasy-Ethiopia,
-      <time datetime="2024-1-12">January, 2024</time>
-    </p>
-  </footer>
-  <script>
-    const loginButton = document.getElementById("login");
-    const inputEmail = document.getElementById("email");
-    const inputPassword = document.getElementById("password");
-
-    async function loginUser(email, password) {
-      const loginEndpoint = "http://localhost:3000/auth/login";
-=======
         try {
           const response = await fetch(loginEndpoint, {
             method: "POST",
@@ -65,44 +88,22 @@
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
-
+          console.log("dhghgohg", response);
           const data = await response.json();
           const token = data.token;
           localStorage.setItem("token", token);
->>>>>>> 27e375c31f76d0fa58a82cc22bb33132acbff8a4
 
-      try {
-        const response = await fetch(loginEndpoint, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+          alert("Login successful! Token stored:", token);
+          window.location.href = "About-User.html";
+        } catch (error) {
+          alert("Error during login:", error.message);
         }
-        console.log("dhghgohg", response);
-        const data = await response.json();
-        const token = data.token;
-        localStorage.setItem("token", token);
-
-        alert("Login successful! Token stored:", token);
-        window.location.href = "About-User.html";
-      } catch (error) {
-        alert("Error during login:", error.message);
       }
-    }
 
-    loginButton.addEventListener("click", () => {
-      console.log("Email", inputEmail.value, "Password", inputPassword.value);
-      loginUser(inputEmail.value, inputPassword.value);
-    });
-  </script>
-</body>
-
+      loginButton.addEventListener("click", () => {
+        console.log("Email", inputEmail.value, "Password", inputPassword.value);
+        loginUser(inputEmail.value, inputPassword.value);
+      });
+    </script>
+  </body>
 </html>
