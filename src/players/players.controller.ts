@@ -36,15 +36,19 @@ async getTeam(
 ): Promise<Player[]> {
 
   let teams = [];
-  console.log(id);
+  // console.log(id);
   const user = await this.authService.findById(id);
+  if (!user.team){return []}
   const playersId = user.team.split("/").reverse().filter(Boolean);
-  console.log(playersId);
+  // console.log(playersId);
   playersId.pop();
   const playerPromises = playersId.map(playerId => this.playerService.findById(playerId));
 
   teams = await Promise.all(playerPromises);
-  return teams.filter(Boolean); // Remove any undefined values
+  if (teams){
+  return teams.filter(Boolean); } else {
+    return [];
+  }
 }
     @Post()
     @UseGuards(AdminGuard)
