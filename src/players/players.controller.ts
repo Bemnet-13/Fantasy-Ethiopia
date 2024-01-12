@@ -30,26 +30,16 @@ export class PlayersController {
     async getAllPlayers(@Query() query: ExpressQuery): Promise<Player[]> {
       return this.playerService.findAll(query);
     }
-    @Get('/team')
-async getTeam(@Req() request: Request): Promise<Player[]> {
-  const authHeader = (request.headers as unknown as { authorization: string }).authorization;
+    @Post('/team')
+async getTeam(
+  @Body('id')id: string,
+): Promise<Player[]> {
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return undefined;
-  }
-
-  const token = authHeader.split(' ')[1];
-  const decodedToken = await this.authService.validateToken(token);
-
-  if (!decodedToken) {
-    return undefined;
-  }
-
-  const userId = decodedToken.id;
   let teams = [];
-  const user = await this.authService.findById(userId);
+  console.log(id);
+  const user = await this.authService.findById(id);
   const playersId = user.team.split("/").reverse().filter(Boolean);
-  // console.log(playersId);
+  console.log(playersId);
   playersId.pop();
   const playerPromises = playersId.map(playerId => this.playerService.findById(playerId));
 
