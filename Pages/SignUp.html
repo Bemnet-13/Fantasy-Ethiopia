@@ -5,24 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    },
-                    fontFamily: {
-                        'Poppins': ['Poppins', 'sans- serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <script defer src="../js/signup.js"></script>
 </head>
 
 <body class="font-Poppins">
@@ -49,7 +36,7 @@
                 <input type="password" id="password" name="password" placeholder=" Password"
                     class="bg-zinc-200 rounded h-8 md:self-start"><br>
                 <hr>
-                <input type="button" value="Sign Up"
+                <input type="button" id="signup" value="Sign Up"
                     class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10">
                 <br>
             </form>

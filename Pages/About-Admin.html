@@ -1,70 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    },
-                    fontFamily: {
-                        'Poppins': ['Poppins', 'sans- serif'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              Poppins: ["Poppins", "sans- serif"],
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
 
-<body class="font-Poppins">
+  <body class="font-Poppins">
     <header class="flex flex-row flex-wrap justify-between">
-        <img src="../Fantasy Ethiopia-logos/Fantasy Ethiopia-logos_black.png" alt="_logo" class="w-1/5">
-        <nav class="m-4">
-            <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="AdminBoard.html">Admin-Board</a></li>
-                <li><a href="About-User.html" aria-current="page"
-                        class="underline decoration-solid decoration-2 underline-offset-2">About
-                    </a></li>
-            </ul>
-        </nav>
+      <img
+        src="../Fantasy Ethiopia-logos/Fantasy Ethiopia-logos_black.png"
+        alt="_logo"
+        class="w-1/5"
+      />
+      <nav class="m-4">
+        <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="AdminBoard.html">Admin-Board</a></li>
+          <li
+            ><a
+              href="About-User.html"
+              aria-current="page"
+              class="underline decoration-solid decoration-2 underline-offset-2"
+              >About
+            </a></li
+          >
+        </ul>
+      </nav>
     </header>
     <main class="ml-20 mr-20 md:ml-60 mr-60">
-        <section>
-            <h2 class="text-2xl text-center font-bold md:text-3xl">What is Fantasy Ethiopia?</h2>
-            <p class="text-lg md:text-xl">Fantasy Ethiopia is a fantasy football game,
-                where a user can create a team of his from
-                set of players available on the application</p>
-        </section>
-        <section class="mt-8">
-            <h2 class="text-2xl text-center font-bold md:text-3xl">How it works?</h2>
-            <p class="text-lg md:text-xl">
-                Each player in a team will be awarded
-                points by the admin, which is based on
-                the performance of the week. Each user's
-                team will have a cumulative gamescore
-                for a gameweek based on the players he
-                chose to create his team with.
-            </p>
-        </section>
-        <article class="text-xl text-center mt-8 font-bold md:text-2xl text-gray-500">Enjoy this remarkably simple game
-            with your friends and see who wins!</article>
+      <section>
+        <h2 class="text-2xl text-center font-bold md:text-3xl"
+          >What is Fantasy Ethiopia?</h2
+        >
+        <p class="text-lg md:text-xl"
+          >Fantasy Ethiopia is a fantasy football game, where a user can create
+          a team of his from set of players available on the application</p
+        >
+      </section>
+      <section class="mt-8">
+        <h2 class="text-2xl text-center font-bold md:text-3xl"
+          >How it works?</h2
+        >
+        <p class="text-lg md:text-xl">
+          Each player in a team will be awarded points by the admin, which is
+          based on the performance of the week. Each user's team will have a
+          cumulative gamescore for a gameweek based on the players he chose to
+          create his team with.
+        </p>
+      </section>
+      <article
+        class="text-xl text-center mt-8 font-bold md:text-2xl text-gray-500"
+        >Enjoy this remarkably simple game with your friends and see who
+        wins!</article
+      >
     </main>
     <footer class="text-center mt-8">
-
-        <p><span>&copy;</span>Fantasy-Ethiopia,
-            <time datetime="2024-1-12">January, 2024</time>
-        </p>
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-1-12">January, 2024</time>
+      </p>
     </footer>
-</body>
-
+  </body>
 </html>
