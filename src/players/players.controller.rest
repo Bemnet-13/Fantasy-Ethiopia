@@ -1,0 +1,43 @@
+# GET /players
+GET http://localhost:3000/players
+
+# POST /players/team
+POST http://localhost:3000/players/team
+Content-Type: application/json
+
+{
+  "id": "<USER_ID>"
+}
+
+# GET /players/team
+GET http://localhost:3000/players/team
+
+# POST /players
+POST http://localhost:3000/players
+Content-Type: application/json
+Authorization: Bearer <ACCESS_TOKEN>
+
+{
+  "name": "John Doe",
+  "club": "Bunna",
+  "score": 10
+}
+
+# GET /players/:id
+GET http://localhost:3000/players/<PLAYER_ID>
+Authorization: Bearer <ACCESS_TOKEN>
+
+# PUT /players/:id
+PUT http://localhost:3000/players/<PLAYER_ID>
+Content-Type: application/json
+Authorization: Bearer <ACCESS_TOKEN>
+
+{
+  "name": "Updated Player",
+  "club": "Updated_Club",
+  "score": 150
+}
+
+# DELETE /players/:id
+DELETE http://localhost:3000/players/<PLAYER_ID>
+Authorization: Bearer <ACCESS_TOKEN>

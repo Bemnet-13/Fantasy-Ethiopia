@@ -7,30 +7,32 @@ async function loginUser(email, password) {
 
   try {
     const response = await fetch(loginEndpoint, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email: email,
         password: password,
-      },
+      }),
     });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-
+    console.log("dhghgohg", response);
     const data = await response.json();
     const token = data.token;
     localStorage.setItem("token", token);
 
-    console.log("Login successful! Token stored:", token);
+    alert("Login successful! Token stored:", token);
     window.location.href = "About-User.html";
   } catch (error) {
-    console.error("Error during login:", error.message);
+    alert("Error during login:", error.message);
   }
 }
 
-// Example usage
 loginButton.addEventListener("click", () => {
+  console.log("Email", inputEmail.value, "Password", inputPassword.value);
   loginUser(inputEmail.value, inputPassword.value);
 });

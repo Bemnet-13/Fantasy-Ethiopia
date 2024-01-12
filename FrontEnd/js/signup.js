@@ -1,14 +1,10 @@
-// signup.js
-
-const { sign } = require("crypto");
-
+console.log("logging is working");
 const signupButton = document.getElementById("signup");
 const inputName = document.getElementById("name");
 const inputEmail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
-const adminRadio = document.getElementById("admin");
 
-async function signupUser(name, email, password, admin) {
+async function signupUser(name, email, password) {
   const signupEndpoint = "http://localhost:3000/auth/signup";
 
   try {
@@ -21,7 +17,6 @@ async function signupUser(name, email, password, admin) {
         name: name,
         email: email,
         password: password,
-        admin: admin,
       }),
     });
 
@@ -37,13 +32,7 @@ async function signupUser(name, email, password, admin) {
   }
 }
 
-// Example usage
 signupButton.addEventListener("click", () => {
   console.log("clicked");
-  signupUser(
-    inputName.value,
-    inputEmail.value,
-    inputPassword.value,
-    adminRadio.value
-  );
+  signupUser(inputName.value, inputEmail.value, inputPassword.value);
 });

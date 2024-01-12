@@ -1,0 +1,35 @@
+# POST /auth/signup
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "username": "Admin",
+  "email": "admin1@fant.com",
+  "password": "123321"
+}
+
+# POST /auth/login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin1@fant.com",
+  "password": "testPassword"
+}
+
+# GET /auth
+GET http://localhost:3000/auth
+
+# PUT /auth
+PUT http://localhost:3000/auth
+Content-Type: application/json
+Authorization: Bearer <ACCESS_TOKEN>
+
+{
+  "firstName": "AdminUpdated",
+  "lastName": "NotUser"
+}
+
+# DELETE /auth
+DELETE http://localhost:3000/auth
+Authorization: Bearer <ACCESS_TOKEN>

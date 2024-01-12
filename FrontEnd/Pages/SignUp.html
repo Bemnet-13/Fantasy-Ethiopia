@@ -1,84 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="../js/signup.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="./css/output.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet" />
-  <script defer src="../js/signup.js"></script>
-</head>
-
-<body class="font-Poppins">
-  <div class="flex flex-col items-center md:flex-row">
-    <header class="flex justify-center md:justify-start">
-      <img src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png" alt="_logo" class="w-1/5">
-
-    </header>
-    <main>
-      <h2 class="text-xl md:text-2xl font-semibold mb-2 mt-8">Sign Up with new credentials</h2>
-      <form class="flex flex-col gap-y-1 items-center">
-        <input type="text" id="name" name="firstName" placeholder="First Name"
-          class="bg-zinc-200 rounded h-8 md:self-start" /><br />
-        <input type="text" id="email" name="phoneno" placeholder="Email"
-          class="bg-zinc-200 rounded h-8 md:self-start" /><br />
-        <input type="password" id="password" name="password" placeholder=" Password"
-          class="bg-zinc-200 rounded h-8 md:self-start" /><br />
-        <hr />
-        <input type="button" id="signup" value="Sign Up"
-          class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10" />
-        <br />
-      </form>
-    </main>
-  </div>
-  <footer class="text-center mt-8">
-    <p><span>&copy;</span>Fantasy-Ethiopia,
-      <time datetime="2024-1-12">January, 2024</time>
-    </p>
-  </footer>
-</body>
-<script>
-  console.log("logging is working");
-  const signupButton = document.getElementById("signup");
-  const inputName = document.getElementById("name");
-  const inputEmail = document.getElementById("email");
-  const inputPassword = document.getElementById("password");
-
-  async function signupUser(name, email, password) {
-    const signupEndpoint = "http://localhost:3000/auth/signup";
-
-    try {
-      const response = await fetch(signupEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      console.log("Signup successful! Redirecting to login page.");
-      window.location.href = "login.html"; // Redirect to the login page
-    } catch (error) {
-      console.error("Error during signup:", error.message);
-      alert("Signup failed. Please try again."); // Display an error message
-    }
-  }
-
-  signupButton.addEventListener("click", () => {
-    console.log("clicked");
-    signupUser(inputName.value, inputEmail.value, inputPassword.value);
-  });
-</script>
-
+  <body class="font-Poppins">
+    <div class="flex flex-col items-center md:flex-row">
+      <header class="flex justify-center md:justify-start">
+        <img
+          src="FrontEnd/FantasyEthiopialogos/FantasyEthiopia-logos_black.png"
+          alt="_logo"
+          class="w-1/5"
+        />
+      </header>
+      <main>
+        <h2 class="text-xl md:text-2xl font-semibold mb-2 mt-8"
+          >Sign Up with new credentials</h2
+        >
+        <form class="flex flex-col gap-y-1 items-center">
+          <input
+            type="text"
+            id="name"
+            name="firstName"
+            placeholder="First Name"
+            class="bg-zinc-200 rounded h-8 md:self-start"
+          /><br />
+          <input
+            type="text"
+            id="email"
+            name="phoneno"
+            placeholder="Email"
+            class="bg-zinc-200 rounded h-8 md:self-start"
+          /><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder=" Password"
+            class="bg-zinc-200 rounded h-8 md:self-start"
+          /><br />
+          <hr />
+          <input
+            type="button"
+            id="signup"
+            value="Sign Up"
+            class="bg-zinc-400 rounded-lg p-2 text-white self-center mr-8 hover:bg-zinc-500 md:self-start ml-10"
+          />
+          <br />
+        </form>
+      </main>
+    </div>
+    <footer class="text-center mt-8">
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-1-12">January, 2024</time>
+      </p>
+    </footer>
+  </body>
+  <script src="FrontEnd/js/signup.js"></script>
 </html>

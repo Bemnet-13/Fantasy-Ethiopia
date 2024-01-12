@@ -8,6 +8,8 @@ import {
   Param,
   UseGuards,
   Query,
+  NotFoundException,
+  Req,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
@@ -34,21 +36,47 @@ export class AuthController {
       return this.authService.findAll();
     }
 
-  @Put(":id")
-  async updateUser(
-    @Param("id")
-    id: string,
-    @Body()
-    upUser: ModifyUserDto
-  ): Promise<User> {
-    const user = upUser as User;
-    return this.authService.updateById(id, user);
-  }
-  @Delete(":id")
-  async deleteUser(
-    @Param("id")
-    id: string
-  ): Promise<User> {
-    return this.authService.deleteById(id);
+    @Put()
+    async updateUser(@Req() req, @Body() upUser: ModifyUserDto): Promise<User> {
+      const decodedToken = await this.authService.validateToken(req.headers.authorization.replace('Bearer ', ''));
+  
+      if (!decodedToken) {
+        throw new NotFoundException('User not authenticated.');
+      }
+  
+      const userId = decodedToken.id;
+  
+      
+      if (!userId) {
+        throw new NotFoundException('User ID not found in the token.');
+      }
+  
+      
+      const existingUser = await this.authService.findById(userId);
+      if (!existingUser) {
+        throw new NotFoundException('User not found.');
+      }
+  
+      const updatedUser = { ...existingUser.toObject(), ...upUser } as User;
+  
+      return this.authService.updateById(userId, updatedUser);
+    }
+  
+  @Delete()
+  async deleteUser(@Req() req): Promise<User> {
+    const decodedToken = await this.authService.validateToken(req.headers.authorization.replace('Bearer ', ''));
+
+    if (!decodedToken) {
+      throw new NotFoundException('User not authenticated.');
+    }
+
+    const userId = decodedToken.id;
+
+    
+    if (!userId) {
+      throw new NotFoundException('User ID not found in the token.');
+    }
+
+    return this.authService.deleteById(userId);
   }
 }

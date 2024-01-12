@@ -19,7 +19,7 @@
   <body class="font-Poppins">
     <header class="flex flex-row flex-wrap justify-between">
       <img
-        src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png"
+        src="FrontEnd/FantasyEthiopialogos/FantasyEthiopia-logos_black.png"
         alt="_logo"
         class="w-1/5"
       />
@@ -59,12 +59,15 @@
         />
         <div class="mr-20" id="adder">
           <input
+            style="background-color: green"
             type="submit"
             value="Add"
             class="bg-zinc-400 rounded-lg p-2 text-white hover:bg-zinc-500 md:p-2"
           />
         </div>
       </div>
+
+      <div id="player-list"></div>
     </main>
 
     <footer class="text-center mt-20">
@@ -73,53 +76,6 @@
         <time datetime="2024-1-12">January, 2024</time>
       </p>
     </footer>
-    <script>
-      // ...
-
-      const adder = document.getElementById("adder");
-
-      adder.addEventListener("click", () => {
-        const endpoint = "http://localhost:3000/players";
-        const name = document.getElementById("name").value;
-        const club = document.getElementById("club").value;
-        const score = parseInt(document.getElementById("Score").value, 10);
-
-        const requestBody = {
-          name: name,
-          club: club,
-          Score: score,
-        };
-
-        console.log(requestBody);
-
-        const token = localStorage.getItem("token");
-        console.log(token);
-
-        if (!token) {
-          console.error("Token not found in localStorage");
-        } else {
-          fetch(endpoint, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(requestBody),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.json();
-            })
-            .then((data) => {
-              console.log("POST request successful", data);
-            })
-            .catch((error) => {
-              console.error("Error during POST request:", error);
-            });
-        }
-      });
-    </script>
+    <script src="FrontEnd/js/admin.js"></script>
   </body>
 </html>
