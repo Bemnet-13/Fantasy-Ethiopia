@@ -4,7 +4,7 @@ import { AuthModule } from '../auth/auth.module';
 import { PlayersController } from './players.controller';
 import { PlayersService } from './players.service';
 import { PlayerSchema } from './schemas/player.schema';
-import { AdminGuard } from 'src/middleware/admin.middleware';
+import { AdminGuard } from '../middleware/admin.middleware';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

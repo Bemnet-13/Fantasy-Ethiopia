@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength, IsEmpty, IsOptional } from 'class-validator';
-import { Player } from 'src/players/schemas/player.schema';
+import { Player } from '../../players/schemas/player.schema';
 
 export class SignUpDto {
   @IsNotEmpty()

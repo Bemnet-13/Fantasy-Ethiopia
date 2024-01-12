@@ -15,12 +15,11 @@ import { PlayersService } from "./players.service";
 import { CreatePlayerDto } from "./dto/create-player.dto";
 import { ModifyPlayerDto } from "./dto/modify-player.dto";
 import { Player } from "./schemas/player.schema";
-import { User } from "src/auth/schemas/user.schema";
+import { User } from "../auth/schemas/user.schema";
 import { Query as ExpressQuery } from "express-serve-static-core";
-import { AuthGuard } from "@nestjs/passport";
-import { AdminGuard } from "src/middleware/admin.middleware";
+import { AdminGuard } from "../middleware/admin.middleware";
 import { AuthService } from "../auth/auth.service";
-import { JwtStrategy } from "src/auth/jwt.strategy";
+
 
 @Controller("players")
 export class PlayersController {
