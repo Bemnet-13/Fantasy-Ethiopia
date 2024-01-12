@@ -30,7 +30,32 @@ export class PlayersController {
     async getAllPlayers(@Query() query: ExpressQuery): Promise<Player[]> {
       return this.playerService.findAll(query);
     }
-  
+    @Get('/team')
+async getTeam(@Req() request: Request): Promise<Player[]> {
+  const authHeader = (request.headers as unknown as { authorization: string }).authorization;
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return undefined;
+  }
+
+  const token = authHeader.split(' ')[1];
+  const decodedToken = await this.authService.validateToken(token);
+
+  if (!decodedToken) {
+    return undefined;
+  }
+
+  const userId = decodedToken.id;
+  let teams = [];
+  const user = await this.authService.findById(userId);
+  const playersId = user.team.split("/").reverse().filter(Boolean);
+  console.log(playersId);
+  playersId.pop();
+  const playerPromises = playersId.map(playerId => this.playerService.findById(playerId));
+
+  teams = await Promise.all(playerPromises);
+  return teams.filter(Boolean); // Remove any undefined values
+}
     @Post()
     @UseGuards(AdminGuard)
     async createplayer(
@@ -57,21 +82,22 @@ export class PlayersController {
       }
   
       const token = authHeader.split(' ')[1];
-  
+      
       
       const decodedToken = await this.authService.validateToken(token);
       
       if (!decodedToken) {
         return undefined; 
       }
-  
+      
       
       const userId = decodedToken.id; 
       
       const user = await this.authService.findById(userId);
+      
       const player =  this.playerService.findById(id);
       user.team += "/" + id;
-      console.log(user);
+      
       const savedUser = await user.save();
       return savedUser;
     }
