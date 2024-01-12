@@ -1,70 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Team</title>
-    <link rel="stylesheet" href="./css/output.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    },
-                    fontFamily: {
-                        'Poppins': ['Poppins', 'sans- serif'],
-                    }
-                }
-            }
-        }
+      var tailwind = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              Poppins: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
 
-<body class="font-Poppins">
+  <body class="font-Poppins">
     <header class="flex flex-row flex-wrap justify-between">
-        <img src="../FantasyEthiopialogos/FantasyEthiopialogos_black.png" alt="_logo" class="w-1/5">
-        <nav class="m-4">
-            <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="MyTeam.html" aria-current="page"
-                        class="underline decoration-solid decoration-2 underline-offset-2">My Team</a></li>
-                <li><a href="About-User.html">About
-                    </a></li>
-            </ul>
-        </nav>
+      <img
+        src="../FantasyEthiopialogos/FantasyEthiopialogos_black.png"
+        alt="_logo"
+        class="w-1/5"
+      />
+      <nav class="m-4">
+        <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
+          <li><a href="Home.html">Home</a></li>
+          <li
+            ><a
+              href="MyTeam.html"
+              aria-current="page"
+              class="underline decoration-solid decoration-2 underline-offset-2"
+              >My Team</a
+            ></li
+          >
+          <li><a href="About-User.html">About</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="text-center">
-        <section class="flex flex-col gap-y-2">
-            <h2 class="text-2xl font-semibold">Create your own team</h2>
-            <p>Update or cancel pending orders with ease.</p>
-            <a href="" class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3">
-                <button>Create Team</button></a>
-        </section>
-        <div class="flex flex-col mt-4 mb-4">
-
-            <h4 class="self-center md:self-end mr-16">Your team's score <br> in the gameweek</h4>
-            <div class="w-16 h-16 rounded-lg bg-zinc-400 self-center md:self-end mr-16"></div>
-            </section>
-        </div>
-        <section class="flex flex-col gap-y-2">
-            <h2 class="text-2xl font-semibold">Update your team</h2>
-            <p>Update your team to earn points.</p>
-            <a href="" class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3">
-                <button>Update Team</button></a>
-        </section>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="text-2xl font-semibold">Create your own team</h2>
+        <p>Update or cancel pending orders with ease.</p>
+        <a
+          href=""
+          class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3"
+        >
+          <button id="createTeam">Create Team</button></a
+        >
+      </section>
+      <div class="flex flex-col mt-4 mb-4">
+        <h4 class="self-center md:self-end mr-16"
+          >Your team's score <br />
+          in the gameweek</h4
+        >
+        <div
+          class="w-16 h-16 rounded-lg bg-zinc-400 self-center md:self-end mr-16"
+        ></div>
+      </div>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="text-2xl font-semibold">Update your team</h2>
+        <p>Update your team to earn points.</p>
+        <a
+          href=""
+          class="bg-zinc-400 rounded-lg p-2 self-center text-white hover:bg-zinc-500 md:p-3"
+        >
+          <button id="updateTeam">Update Team</button></a
+        >
+      </section>
     </main>
 
-
     <footer class="text-center mt-20">
-        <p><span>&copy;</span>Fantasy-Ethiopia,
-            <time datetime="2024-1-12">January, 2024</time>
-        </p>
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-01-12">January, 2024</time>
+      </p>
     </footer>
-</body>
+  </body>
+  <script>
+    async function fetchData() {
+      const url = "http://localhost:3000/players";
+      const token = localStorage.getItem("token"); // Replace 'your_token_key' with the actual key used to store the token
 
+      if (!token) {
+        console.error("Token not found in localStorage");
+        return;
+      }
+
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: headers,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    fetchData();
+  </script>
 </html>
