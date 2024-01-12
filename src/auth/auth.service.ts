@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, Query } from 'mongoose';
 import { User } from './schemas/user.schema';
 
 import * as bcrypt from 'bcryptjs';
@@ -8,6 +8,8 @@ import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
 import { Player } from 'src/players/schemas/player.schema';
+import { Query as ExpressQuery } from 'express-serve-static-core';
+
 
 @Injectable()
 export class AuthService {
@@ -86,5 +88,25 @@ export class AuthService {
       console.error('Invalid token:', error.message);
       return null;
     }
+  }
+  async findAll(query: ExpressQuery): Promise<User[]> {
+    const resPerPage = 2;
+    const currentPage = Number(query.page) || 1;
+    const skip = resPerPage * (currentPage - 1);
+
+    const keyword = query.keyword
+      ? {
+          name: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+
+    const users = await this.userModel
+      .find({ ...keyword })
+      .limit(resPerPage)
+      .skip(skip);
+    return users;
   }
 }

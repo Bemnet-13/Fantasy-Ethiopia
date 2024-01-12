@@ -7,12 +7,14 @@ import {
   Put,
   Param,
   UseGuards,
+  Query,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { SignUpDto } from "./dto/signup.dto";
 import { User } from "./schemas/user.schema";
 import { ModifyUserDto } from "./dto/modify-user.dto";
+import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller("auth")
 export class AuthController {
@@ -27,6 +29,10 @@ export class AuthController {
   login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
     return this.authService.login(loginDto);
   }
+  @Get()
+    async getAllPlayers(@Query() query: ExpressQuery): Promise<User[]> {
+      return this.authService.findAll(query);
+    }
 
   @Put(":id")
   async updateUser(
