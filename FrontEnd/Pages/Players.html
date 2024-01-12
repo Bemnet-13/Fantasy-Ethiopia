@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players</title>
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    },
+                    fontFamily: {
+                        'Poppins': ['Poppins', 'sans- serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-Poppins">
+    <header class="flex flex-row flex-wrap justify-between">
+        <img src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png" alt="_logo" class="w-1/5">
+        <nav class="m-4">
+            <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="MyTeam.html" aria-current="page">My Team</a></li>
+                <li><a href="About-User.html">About
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="text-center">
+        <section>
+            <h2 class="font-bold text-lg mb-4 md:text-2xl"> Pick players to form your team!</h2>
+        </section>
+        <div class=" flex flex-row ml-10 mr-16 justify-center items-center inline-block bg-zinc-200">
+            <div class="ml-20">Player Name</div>
+            <div class="ml-20 mr-20">Team1</div>
+            <div class="mr-20"> <input type="submit" value="Add"
+                    class="bg-zinc-400 rounded-lg p-2 text-white hover:bg-zinc-500 md:p-2"></div>
+        </div>
+    </main>
+
+
+    <footer class="text-center mt-20">
+        <p><span>&copy;</span>Fantasy-Ethiopia,
+            <time datetime="2024-1-12">January, 2024</time>
+        </p>
+    </footer>
+</body>
+
+</html>
