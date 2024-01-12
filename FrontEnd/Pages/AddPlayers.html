@@ -1,65 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Players</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./css/output.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    },
-                    fontFamily: {
-                        'Poppins': ['Poppins', 'sans- serif'],
-                    }
-                }
-            }
-        }
+      // Remove the unnecessary tailwind.config block
     </script>
-</head>
+  </head>
 
-<body class="font-Poppins">
+  <body class="font-Poppins">
     <header class="flex flex-row flex-wrap justify-between">
-        <img src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png" alt="_logo" class="w-1/5">
-        <nav class="m-4">
-            <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="MyTeam.html" aria-current="page">My Team</a></li>
-                <li><a href="About-User.html">About
-                    </a></li>
-            </ul>
-        </nav>
+      <img
+        src="../FantasyEthiopialogos/FantasyEthiopia-logos_black.png"
+        alt="_logo"
+        class="w-1/5"
+      />
+      <nav class="m-4">
+        <ul class="sm:inline-grid grid-cols-3 gap-4 font-bold">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="MyTeam.html" aria-current="page">My Team</a></li>
+          <li><a href="About-User.html">About</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="text-center">
-        <section>
-            <h2 class="font-bold text-lg mb-4 md:text-2xl">Modify players details scores and everything!</h2>
-        </section>
-        <div
-            class="flex flex-row ml-10 mr-16 mt-2 mb-4 w-4/5 rounded-lg justify-between items-center inline-block bg-zinc-200">
-            <div class="ml-20"></div><input type="text" name="Player_Name" placeholder="Player name">
-            <div class="ml-20 mr-20"><input type="text" name="Player_Name" placeholder="Team"></div>
-            <div class="mr-20"> <input type="submit" value="Add"
-                    class="bg-zinc-400 rounded-lg p-2 text-white hover:bg-zinc-500 md:p-2"></div>
-            <div class="mr-10"><input type="text" name="Score" placeholder="Score" value="0"></div>
-            <div class="mr-20"> <input type="submit" value="Delete"
-                    class="bg-zinc-400 rounded-lg p-2 text-white hover:bg-zinc-500 md:p-2"></div>
+      <section>
+        <h2 class="font-bold text-lg mb-4 md:text-2xl"
+          >Modify players details scores and everything!</h2
+        >
+      </section>
+      <div
+        class="flex flex-row ml-10 mr-16 mt-2 mb-4 w-4/5 rounded-lg justify-between items-center inline-block bg-zinc-200"
+      >
+        <div class="ml-20"></div>
+        <input
+          id="name"
+          type="text"
+          name="Player_Name"
+          placeholder="Player name"
+        />
+        <div class="ml-20 mr-20"></div>
+        <input type="text" id="club" name="Player_Name" placeholder="Team" />
+        <div class="mr-10"></div>
+        <input
+          type="text"
+          id="Score"
+          name="Score"
+          placeholder="Score"
+          value="0"
+        />
+        <div class="mr-20" id="adder">
+          <input
+            type="submit"
+            value="Add"
+            class="bg-zinc-400 rounded-lg p-2 text-white hover:bg-zinc-500 md:p-2"
+          />
         </div>
+      </div>
     </main>
 
-
     <footer class="text-center mt-20">
-        <p><span>&copy;</span>Fantasy-Ethiopia,
-            <time datetime="2024-1-12">January, 2024</time>
-        </p>
+      <p
+        ><span>&copy;</span>Fantasy-Ethiopia,
+        <time datetime="2024-1-12">January, 2024</time>
+      </p>
     </footer>
-</body>
+    <script>
+      // ...
 
+      const adder = document.getElementById("adder");
+
+      adder.addEventListener("click", () => {
+        const endpoint = "http://localhost:3000/players";
+        const name = document.getElementById("name").value;
+        const club = document.getElementById("club").value;
+        const score = parseInt(document.getElementById("Score").value, 10);
+
+        const requestBody = {
+          name: name,
+          club: club,
+          Score: score,
+        };
+
+        console.log(requestBody);
+
+        const token = localStorage.getItem("token");
+        console.log(token);
+
+        if (!token) {
+          console.error("Token not found in localStorage");
+        } else {
+          fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(requestBody),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log("POST request successful", data);
+            })
+            .catch((error) => {
+              console.error("Error during POST request:", error);
+            });
+        }
+      });
+    </script>
+  </body>
 </html>
