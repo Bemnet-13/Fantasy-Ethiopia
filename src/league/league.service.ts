@@ -53,7 +53,7 @@ export class LeagueService {
       }
     
       async updateById(id: string, league: League): Promise<League> {
-        return await this.leagueModel.findByIdAndUpdate(id, player, {
+        return await this.leagueModel.findByIdAndUpdate(id, league, {
           new: true,
           runValidators: true,
         });

@@ -8,7 +8,7 @@ import {
   } from 'class-validator';
 
   import { User } from '../../auth/schemas/user.schema';
-  import {Player } from '../schemas/player.schema';
+  import {League } from '../schemas/league.schema';
   
   export class CreateLeagueDto {
     @IsNotEmpty()

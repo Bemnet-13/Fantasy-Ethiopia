@@ -3,6 +3,8 @@ import {
     Controller,
     Delete,
     Get,
+    InternalServerErrorException,
+    NotFoundException,
     Param,
     Post,
     Put,
@@ -45,8 +47,8 @@ import {
         throw new NotFoundException('League not found');
       }
       try {
-      league.members.append(userId)
-      await league.save();
+      league.members.push(userId)
+      // await league.save();
        } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -66,7 +68,7 @@ import {
       uPplayer: CreateLeagueDto,
       @Req() req
     ): Promise<League> {
-      const league = uPplayer as unknown as Player;
+      const league = uPplayer as unknown as League;
       return this.leagueService.create(league);
     }
     
@@ -78,8 +80,8 @@ import {
       id: string,
       @Body()
       uPleague: ModifyLeagueDto
-    ): Promise<Player> {
-      const player = uPleague as unknown as League;
+    ): Promise<League> {
+      const league = uPleague as unknown as League;
       return this.leagueService.updateById(id, league);
     }
   
@@ -88,7 +90,7 @@ import {
     async deleteLeague(
       @Param("id")
       id: string
-    ): Promise<Player> {
+    ): Promise<League> {
       return this.leagueService.deleteById(id);
     }
   }
