@@ -17,7 +17,7 @@ import { AdminGuard } from 'middleware/admin.middleware';
     user: User;
   }
   
-  export const LeagueSchema = SchemaFactory.createForClass(Player);
+  export const LeagueSchema = SchemaFactory.createForClass(League);
 
 
 
