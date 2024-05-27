@@ -48,7 +48,8 @@ import {
       }
       try {
       league.members.push(userId)
-      // await league.save();
+      console.log(league.members);
+      await this.leagueService.updateById(leagueId, league)
        } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -63,7 +64,7 @@ import {
     
     @Post()
     @UseGuards(AdminGuard)
-    async createplayer(
+    async createLeague(
       @Body()
       uPplayer: CreateLeagueDto,
       @Req() req
