@@ -26,6 +26,6 @@ async function bootstrap() {
   );
   app.use("/FrontEnd/js", express.static(join(__dirname, "..", "FrontEnd/js")));
   app.setViewEngine("html");
-  await app.listen(3000);
+  await app.listen(3000, '0.0.0.0');
 }
 bootstrap();
