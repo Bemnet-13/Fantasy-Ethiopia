@@ -31,6 +31,7 @@ export class AdminGuard implements CanActivate {
     const user = await this.authService.findById(userId);
     // console.log(user);
     // console.log(user.email);
-    return adminEmails.includes(user.email);
+    return adminEmails.includes(user.email) || user.role == "admin";
+    
   }
 }

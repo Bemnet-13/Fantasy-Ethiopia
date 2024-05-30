@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength, IsEmpty, IsOptional } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength, IsEmpty, IsOptional, IsIn } from 'class-validator';
 import { Player } from '../../players/schemas/player.schema';
 
 export class SignUpDto {
@@ -17,4 +17,13 @@ export class SignUpDto {
 
   @IsOptional()
   readonly team: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @IsIn(['user', 'admin'])
+  role: string;
+
+  @IsNotEmpty()
+  isSuspended: boolean;
 }
+
