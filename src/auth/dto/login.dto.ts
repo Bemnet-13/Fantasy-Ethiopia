@@ -14,11 +14,11 @@ export class LoginDto {
   @IsOptional()
   readonly team: string;
 
-  @IsNotEmpty()
+  
   @IsString()
   @IsIn(['user', 'admin'])
   role: string;
 
-  @IsNotEmpty()
+  
   isSuspended: boolean;
 }

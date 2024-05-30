@@ -28,11 +28,11 @@ import { User } from '../schemas/user.schema';
     @IsOptional()
     readonly team:string;
 
-    @IsNotEmpty()
+    
     @IsString()
     @IsIn(['user', 'admin'])
     role: string;
   
-    @IsNotEmpty()
+    
     isSuspended: boolean;
 }

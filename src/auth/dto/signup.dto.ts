@@ -23,7 +23,6 @@ export class SignUpDto {
   @IsIn(['user', 'admin'])
   role: string;
 
-  @IsNotEmpty()
   isSuspended: boolean;
 }
 
