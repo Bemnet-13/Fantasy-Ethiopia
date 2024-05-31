@@ -30,7 +30,7 @@ export class AuthController {
   }
 
   @Post("/login")
-  login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
+  login(@Body() loginDto: LoginDto): Promise<Object> {
     return this.authService.login(loginDto);
   }
   @Get()
