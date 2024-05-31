@@ -16,6 +16,7 @@ export class LoginDto {
 
   
   @IsString()
+  @IsNotEmpty()
   @IsIn(['user', 'admin'])
   role: string;
 

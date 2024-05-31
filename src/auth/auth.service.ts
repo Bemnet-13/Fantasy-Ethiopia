@@ -20,7 +20,7 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { name, email, password } = signUpDto;
+    const { name, email, password, role } = signUpDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -28,15 +28,16 @@ export class AuthService {
       name,
       email,
       password: hashedPassword,
+      role,
     });
 
-    const token = this.jwtService.sign({ id: user._id });
+    const token = this.jwtService.sign({ id: user._id, role });
 
     return { token };
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {
-    const { email, password } = loginDto;
+    const { email, password, role } = loginDto;
 
     const user = await this.userModel.findOne({ email });
 
@@ -49,8 +50,11 @@ export class AuthService {
     if (!isPasswordMatched) {
       throw new UnauthorizedException('Invalid email or password');
     }
-
-    const token = this.jwtService.sign({ id: user._id });
+    
+    if (user.role != role) {
+      throw new UnauthorizedException('Wrong Role. Role not matched correctly.');
+    }
+    const token = this.jwtService.sign({ id: user._id, role });
 
     return { token };
   }
