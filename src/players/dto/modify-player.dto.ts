@@ -18,8 +18,8 @@ import {
     @IsString()
     readonly club: string;
   
-    @IsOptional()
-    @IsNumber()
+    
+    @IsNotEmpty()
     readonly Score: number;
 
   

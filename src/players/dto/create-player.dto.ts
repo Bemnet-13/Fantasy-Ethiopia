@@ -19,8 +19,8 @@ import {
     @IsString()
     readonly club: string;
   
-    @IsNumber()
-    readonly Score: number;
+    @IsNotEmpty()
+    readonly score: number;
   
     @IsEmpty({ message: 'You cannot pass user id' })
     readonly user: User;

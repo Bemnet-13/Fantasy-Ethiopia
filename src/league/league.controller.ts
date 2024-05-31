@@ -23,7 +23,7 @@ import {
   import { AuthService } from "../auth/auth.service";
   
   
-  @Controller("league")
+  @Controller("leagues")
   export class LeagueController {
     constructor(
       private leagueService: LeagueService,
@@ -36,13 +36,32 @@ import {
     }
 
     @Post("/join")
-    async getTeam(@Body() body: { userId: string, leagueId: string }) {
-      const userId = body.userId;
+    async getTeam(@Body() body: {leagueId: string },
+    @Req() request: Request) {
+      const authHeader = (request.headers as unknown as { authorization: string })
+      .authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("und1");
+      return undefined;
+    }
+
+    const token = authHeader.split(" ")[1];
+    console.log(token);
+    const decodedToken = await this.authService.validateToken(token);
+
+    if (!decodedToken) {
+      console.log("und2");
+      return undefined;
+    }
+
+    const userId = decodedToken.id;
+
       const leagueId = body.leagueId;
-      // console.log(userId, "usrid");
+      console.log(userId, "usrid");
       const user = await this.authService.findById(userId);
       const league = await this.leagueService.findById(leagueId);
-      // console.log(user, "user");
+      console.log(user, "user");
       if (!league) {
         throw new NotFoundException('League not found');
       }
@@ -58,7 +77,8 @@ import {
       }
     }
      return  {
-      message: true}; 
+      message: true
+    }; 
     }
   
     

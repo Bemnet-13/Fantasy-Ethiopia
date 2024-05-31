@@ -83,15 +83,17 @@ export class AuthController {
   }
 
   @UseGuards(AdminGuard)
-  @Delete("user:id")
-  async deleteOtherUser(@Req() req): Promise<User> {
+  @Delete("user/:id")
+  async deleteOtherUser(@Req() req,
+  @Param("id") id:string
+  ): Promise<User> {
     const decodedToken = await this.authService.validateToken(req.headers.authorization.replace('Bearer ', ''));
 
     if (!decodedToken) {
       throw new NotFoundException('User not authenticated.');
     }
 
-    const userId = decodedToken.id;
+    const userId = id;
 
     
     if (!userId) {
@@ -102,7 +104,7 @@ export class AuthController {
   }
 
   @UseGuards(AdminGuard)
-  @Put("suspend:id")
+  @Put("suspend/:id")
   async suspendUser(
     @Param("id") id: string,
     @Req() req): Promise<User> {
