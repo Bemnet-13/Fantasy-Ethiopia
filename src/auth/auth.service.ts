@@ -21,6 +21,11 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password, role } = signUpDto;
+    var usedBefore = await this.userModel.findOne({email});
+
+    if (usedBefore) {
+      throw new BadRequestException('Please enter correct id.');
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -54,6 +59,11 @@ export class AuthService {
     if (user.role != role) {
       throw new UnauthorizedException('Wrong Role. Role not matched correctly.');
     }
+
+    if (user.isSuspended == true){
+      throw new UnauthorizedException('Account suspended! Contact Admins' );
+    }
+    
     const token = this.jwtService.sign({ id: user._id, role });
 
     return { token };

@@ -10,6 +10,7 @@ import {
   Query,
   NotFoundException,
   Req,
+  Patch,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
@@ -104,7 +105,7 @@ export class AuthController {
   }
 
   @UseGuards(AdminGuard)
-  @Put("suspend/:id")
+  @Patch("suspend/:id")
   async suspendUser(
     @Param("id") id: string,
     @Req() req): Promise<User> {
