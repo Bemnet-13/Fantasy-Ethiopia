@@ -24,7 +24,7 @@ export class AuthService {
     var usedBefore = await this.userModel.findOne({email});
 
     if (usedBefore) {
-      throw new BadRequestException('Please enter correct id.');
+      throw new BadRequestException('Duplicate email.');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
