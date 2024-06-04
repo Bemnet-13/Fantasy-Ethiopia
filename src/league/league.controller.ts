@@ -83,7 +83,6 @@ import {
   
     
     @Post()
-    @UseGuards(AdminGuard)
     async createLeague(
       @Body()
       uPplayer: CreateLeagueDto,
@@ -95,7 +94,6 @@ import {
     
 
     @Put(":id")
-    @UseGuards(AdminGuard)
     async updateLeague(
       @Param("id")
       id: string,
@@ -107,7 +105,6 @@ import {
     }
   
     @Delete(":id")
-    @UseGuards(AdminGuard)
     async deleteLeague(
       @Param("id")
       id: string
